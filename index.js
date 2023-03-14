@@ -36,8 +36,12 @@ function decodeUtf8mb3(str) {
     const nextChar = str[i + 1];
     if (isEncodeUtf8mb3(c, nextChar)) {
       const unicode = decodeUnicodemb3(c + nextChar);
-      result += String.fromCodePoint(unicode);
-      i += 1;
+      if(unicode > 0x10ffff){
+        result += c;
+      }else{
+        result += String.fromCodePoint(unicode);
+        i += 1;
+      }
     } else {
       result += c;
     }
@@ -47,12 +51,12 @@ function decodeUtf8mb3(str) {
 }
 
 function encodeUnicodemb3(unicode) {
-  const c11 = 0xe8 | (unicode & 0x03);
-  const c12 = 0x80 | ((unicode >> 2) & 0x3f);
-  const c13 = 0x80 | ((unicode >> 8) & 0x3f);
-  const c21 = 0xec | ((unicode >> 14) & 0x03);
-  const c22 = 0x80 | ((unicode >> 16) & 0x3f);
-  const c23 = 0x80 | ((unicode >> 22) & 0x3f);
+  const c11 = 0xec | (unicode & 0x01);
+  const c12 = 0x80 | ((unicode >> 1) & 0x3f);
+  const c13 = 0x80 | ((unicode >> 7) & 0x3f);
+  const c21 = 0xee | ((unicode >> 13) & 0x01);
+  const c22 = 0x80 | ((unicode >> 14) & 0x3f);
+  const c23 = 0x80 | ((unicode >> 20) & 0x3f);
   const buf = Buffer.from([c11, c12, c13, c21, c22, c23]);
   return buf.toString("utf8");
 }
@@ -67,12 +71,12 @@ function decodeUnicodemb3(char) {
   const c23 = buf[5];
 
   const unicode =
-    (c11 & 0x03) |
-    ((c12 & 0x3f) << 2) |
-    ((c13 & 0x3f) << 8) |
-    ((c21 & 0x03) << 14) |
-    ((c22 & 0x3f) << 16) |
-    ((c23 & 0x3f) << 22);
+    (c11 & 0x01) |
+    ((c12 & 0x3f) << 1) |
+    ((c13 & 0x3f) << 7) |
+    ((c21 & 0x01) << 13) |
+    ((c22 & 0x3f) << 14) |
+    ((c23 & 0x3f) << 20);
 
   return unicode;
 }
@@ -80,10 +84,11 @@ function decodeUnicodemb3(char) {
 function isEncodeUtf8mb3(char, nextChar) {
   const code = char ? char.codePointAt(0) : 0;
   const nextCode = nextChar ? nextChar.codePointAt(0) : 0;
+  const charBuf = Buffer.from(char);
   return (
-    (code & 0xc000) === 0x8000 &&
-    (nextCode & 0xc000) === 0xc000 &&
-    (Buffer.from(char + nextChar, "utf8")[0] & 0xf0) !== 0xf0
+    (code & 0xe000) === 0xc000 &&
+    (nextCode & 0xe000) === 0xe000 &&
+    (charBuf[0] & 0xf0) !== 0xf0
   );
 }
 
