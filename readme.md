@@ -2,6 +2,8 @@
 
 Let mysql's utf8 encoding store four-byte characters such as emoji(让 mysql 的 utf8 编码存储表情符号这类的四字节字符).
 
+![encode](./encode.svg)
+
 ## Feature
 
 - Four-byte characters to three-byte characters(四字节字符转三字节字符)
