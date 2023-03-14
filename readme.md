@@ -20,6 +20,7 @@ const {
   encodeUtf8mb3,
   decodeUtf8mb3,
   includeEncodeUtf8mb3,
+  includeUtf8mb4,
 } = require("utf8mb3");
 
 const str = "汉😊😊🛝🛝🛝汉";
@@ -31,7 +32,9 @@ const utf8mb3 = encodeUtf8mb3(str);
 
 console.log("encodeUtf8mb4", utf8mb3, utf8mb3.length); // encodeUtf8mb4 汉ꂶꂶ鷶鷶鷶汉 12
 console.log("decodeUtf8mb4", decodeUtf8mb3(utf8mb3)); // decodeUtf8mb4 汉😊😊🛝🛝🛝汉
-console.log("include", includeEncodeUtf8mb3(utf8mb3)); // include true
+console.log("includeEncodeUtf8mb3", includeEncodeUtf8mb3(utf8mb3)); // includeEncodeUtf8mb3 true
+console.log("includeUtf8mb4", includeUtf8mb4(str)); // includeUtf8mb4 true
+console.log("includeUtf8mb4", includeUtf8mb4("测试")); // includeUtf8mb4 false
 ```
 
 ## License
