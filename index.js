@@ -31,11 +31,9 @@ function encodeUtf8mb3(str) {
 
 function decodeUtf8mb3(str) {
   let result = "";
-
   for (let i = 0; i < str.length; i++) {
     const c = str[i];
     const nextChar = str[i + 1];
-
     if (isEncodeUtf8mb3(c, nextChar)) {
       const unicode = decodeUnicodemb3(c + nextChar);
       result += String.fromCodePoint(unicode);
@@ -82,7 +80,11 @@ function decodeUnicodemb3(char) {
 function isEncodeUtf8mb3(char, nextChar) {
   const code = char ? char.codePointAt(0) : 0;
   const nextCode = nextChar ? nextChar.codePointAt(0) : 0;
-  return (code & 0x8000) === 0x8000 && (nextCode & 0xc000) === 0xc000;
+  return (
+    (code & 0xc000) === 0x8000 &&
+    (nextCode & 0xc000) === 0xc000 &&
+    (Buffer.from(char + nextChar, "utf8")[0] & 0xf0) !== 0xf0
+  );
 }
 
 function includeEncodeUtf8mb3(str) {
@@ -96,8 +98,22 @@ function includeEncodeUtf8mb3(str) {
   return false;
 }
 
+function includeUtf8mb4(str) {
+  const buf = Buffer.from(str);
+
+  for (let i = 0; i < buf.length; i++) {
+    const code = buf[i];
+    if (code >= 0xf0) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 module.exports = {
   encodeUtf8mb3,
   decodeUtf8mb3,
   includeEncodeUtf8mb3,
+  includeUtf8mb4,
 };
