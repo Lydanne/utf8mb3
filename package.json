@@ -15,5 +15,9 @@
     "decode"
   ],
   "author": "WumaCoder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WumaCoder/utf8mb3.git"
+  },
   "license": "MIT"
 }
