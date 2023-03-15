@@ -1,6 +1,6 @@
 {
   "name": "utf8mb3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Let mysql's utf8 encoding store four-byte characters such as emoji(让mysql的utf8编码存储表情符号这类的四字节字符).",
   "main": "index.js",
   "scripts": {
