@@ -34,7 +34,7 @@ function decodeUtf8mb3(str) {
   for (let i = 0; i < str.length; i++) {
     const c = str[i];
     const nextChar = str[i + 1];
-    if (isEncodeUtf8mb3(c, nextChar)) {
+    if (isEncodeUtf8mb3(c, nextChar, false)) {
       const unicode = decodeUnicodemb3(c + nextChar);
       if(unicode > 0x10ffff){
         result += c;
@@ -81,14 +81,15 @@ function decodeUnicodemb3(char) {
   return unicode;
 }
 
-function isEncodeUtf8mb3(char, nextChar) {
+function isEncodeUtf8mb3(char, nextChar, isStrict = true) {
   const code = char ? char.codePointAt(0) : 0;
   const nextCode = nextChar ? nextChar.codePointAt(0) : 0;
   const charBuf = Buffer.from(char);
   return (
     (code & 0xe000) === 0xe000 &&
     (nextCode & 0xe000) === 0xe000 &&
-    (charBuf[0] & 0xf0) !== 0xf0
+    (charBuf[0] & 0xf0) !== 0xf0 &&
+    (isStrict ? decodeUnicodemb3(char + nextChar) <= 0x10ffff : true)
   );
 }
 
