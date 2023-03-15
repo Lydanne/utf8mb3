@@ -51,7 +51,7 @@ function decodeUtf8mb3(str) {
 }
 
 function encodeUnicodemb3(unicode) {
-  const c11 = 0xec | (unicode & 0x01);
+  const c11 = 0xee | (unicode & 0x01);
   const c12 = 0x80 | ((unicode >> 1) & 0x3f);
   const c13 = 0x80 | ((unicode >> 7) & 0x3f);
   const c21 = 0xee | ((unicode >> 13) & 0x01);
@@ -86,7 +86,7 @@ function isEncodeUtf8mb3(char, nextChar) {
   const nextCode = nextChar ? nextChar.codePointAt(0) : 0;
   const charBuf = Buffer.from(char);
   return (
-    (code & 0xe000) === 0xc000 &&
+    (code & 0xe000) === 0xe000 &&
     (nextCode & 0xe000) === 0xe000 &&
     (charBuf[0] & 0xf0) !== 0xf0
   );
