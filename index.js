@@ -89,6 +89,7 @@ function isEncodeUtf8mb3(char, nextChar, isStrict = true) {
     (code & 0xe000) === 0xe000 &&
     (nextCode & 0xe000) === 0xe000 &&
     (charBuf[0] & 0xf0) !== 0xf0 &&
+    (nextCode & 0x3) === 0 &&
     (isStrict ? decodeUnicodemb3(char + nextChar) <= 0x10ffff : true)
   );
 }
