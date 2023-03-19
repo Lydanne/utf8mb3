@@ -14,11 +14,14 @@ Let mysql's utf8 encoding store four-byte characters such as emoji(让 mysql 的
 
 - Four-byte characters to three-byte characters(四字节字符转三字节字符)
 - Repeated coding remains unchanged(重复编码内容不变)
-- support wasm module(支持 wasm 使用)
 
-## JS Use
+## Start
 
-> [Detailed description](./packages/utf8mb3-js/readme.md)
+```
+npm install utf8mb3
+```
+
+## Use
 
 ```js
 const {
@@ -40,18 +43,6 @@ console.log("decodeUtf8mb4", decodeUtf8mb3(utf8mb3)); // decodeUtf8mb4 汉😊�
 console.log("includeEncodeUtf8mb3", includeEncodeUtf8mb3(utf8mb3)); // includeEncodeUtf8mb3 true
 console.log("includeUtf8mb4", includeUtf8mb4(str)); // includeUtf8mb4 true
 console.log("includeUtf8mb4", includeUtf8mb4("测试")); // includeUtf8mb4 false
-```
-
-## Rust Use
-
-> [Detailed description](./packages/utf8mb3/readme.md)
-
-```rust
-let str = "😊";
-let result = utf8mb4::encode(str);
-println!("encode: {}", result); // encode: 
-println!("decode: {}", utf8mb4::decode(&result)); // decode: 😊
-
 ```
 
 ## License
