@@ -9,7 +9,7 @@ license = "MIT"
 readme = "readme.md"
 homepage = "https://github.com/WumaCoder/utf8mb3"
 repository = "https://github.com/WumaCoder/utf8mb3.git"
-keywords = ["utf8", "encode", "decode", "utf8mb3", "utf8mb4", "wasm", "mysql", "emoji", "unicode"]
+keywords = ["utf8", "encode", "utf8mb4", "mysql", "emoji"]
 categories = ["encoding", "text-processing", "unicode", "wasm"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
