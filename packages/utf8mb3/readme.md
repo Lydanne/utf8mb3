@@ -13,9 +13,9 @@ cargo add utf8mb3
 ```rust
 
   let str = "😊";
-  let result = encode(str);
+  let result = utf8mb4::encode(str);
   println!("encode: {}", result); // encode: 
-  println!("decode: {}", decode(&result)); // decode: 😊
+  println!("decode: {}", utf8mb4::decode(&result)); // decode: 😊
 ```
 
 ## License
