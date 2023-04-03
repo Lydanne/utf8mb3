@@ -1,4 +1,5 @@
 [workspace]
 members = [
-  "packages/utf8mb3"
+  "packages/utf8mb3",
+  "packages/utf8mb3-wasm"
 ]

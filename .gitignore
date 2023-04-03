@@ -1,4 +1,4 @@
-target
-dist
 node_modules
+target
+local
 .DS_Store

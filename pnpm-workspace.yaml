@@ -1,0 +1,3 @@
+packages:
+  - "packages/utf8mb3-wasm/wasm-libs/*"
+  - "packages/utf8mb3-wasm/examples/*"
