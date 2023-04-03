@@ -129,6 +129,8 @@ fn to_utf8_buf(c: &char) -> [u8; 4] {
 
 #[cfg(test)]
 mod tests {
+    use std::time::Instant;
+
     use super::*;
 
     #[test]
@@ -225,6 +227,15 @@ mod tests {
         let result = encode(str);
         assert_eq!(result, "！！");
         assert_eq!(decode(&result), str);
+    }
+
+    #[test]
+    fn it_encode_utf8mb3_t13() {
+        let str = "😊".repeat(1000000);
+        let start = Instant::now();
+        decode(&encode(&str));
+        let duration = start.elapsed();
+        println!("Time elapsed in decode() is: {:?}", duration);
     }
 
     #[test]
