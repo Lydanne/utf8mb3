@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "utf8mb3",
   "version": "1.0.4",
   "description": "Let mysql's utf8 encoding store four-byte characters such as emoji(让mysql的utf8编码存储表情符号这类的四字节字符).",
@@ -12,12 +13,16 @@
     "utf8mb4",
     "utf8",
     "encode",
-    "decode"
+    "decode",
+    "wasm"
   ],
   "author": "WumaCoder",
   "repository": {
     "type": "git",
     "url": "https://github.com/WumaCoder/utf8mb3.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "utf8mb3-wasm": "workspace:^0.1.0"
+  }
 }

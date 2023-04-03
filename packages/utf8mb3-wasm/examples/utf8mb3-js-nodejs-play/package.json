@@ -1,0 +1,16 @@
+{
+  "private": "true",
+  "name": "utf8mb3-js-nodejs-play",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "utf8mb3": "workspace:^2.0.0"
+  }
+}
