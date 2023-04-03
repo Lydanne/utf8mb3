@@ -18,15 +18,20 @@ Let mysql's utf8 encoding store four-byte characters such as emoji(让 mysql 的
 
 ## JS Use
 
-> [Detailed description](./packages/utf8mb3-js/readme.md)
 > 支持 nodejs 和 browser 环境
+
+```
+npm i utf8mb3
+# pnpm i utf8mb3
+# yarn add utf8mb3
+```
 
 ```js
 const {
   encode,
   decode,
-  includeEncodeUtf8mb3,
-  includeUtf8mb4,
+  include_encode_utf8mb3,
+  include_utf8mb4,
 } = require("utf8mb3");
 
 const str = "汉😊😊🛝🛝🛝汉";
@@ -38,9 +43,9 @@ const utf8mb3 = encode(str);
 
 console.log("encodeUtf8mb4", utf8mb3, utf8mb3.length); // encodeUtf8mb4 汉ꂶꂶ鷶鷶鷶汉 12
 console.log("decodeUtf8mb4", decode(utf8mb3)); // decodeUtf8mb4 汉😊😊🛝🛝🛝汉
-console.log("includeEncodeUtf8mb3", includeEncodeUtf8mb3(utf8mb3)); // includeEncodeUtf8mb3 true
-console.log("includeUtf8mb4", includeUtf8mb4(str)); // includeUtf8mb4 true
-console.log("includeUtf8mb4", includeUtf8mb4("测试")); // includeUtf8mb4 false
+console.log("include_encode_utf8mb3", include_encode_utf8mb3(utf8mb3)); // include_encode_utf8mb3 true
+console.log("include_utf8mb4", include_utf8mb4(str)); // include_utf8mb4 true
+console.log("include_utf8mb4", include_utf8mb4("测试")); // include_utf8mb4 false
 ```
 
 ## Rust Use
@@ -64,14 +69,14 @@ println!("decode: {}", utf8mb3::decode(&result)); // decode: 😊
 MacOS: 13 , MacBook Pro m1 2021
 
 | Source                | 10000000 😊 coding time | Test Script                                            |
-| --------------------- | ---------------------- | ------------------------------------------------------ |
-| nodejs native         | 684.573ms              | commemorate/utf8mb3-js/test.js                         |
-| rust native           | 61.85475ms             | packages/utf8mb3/src/lib.rs                            |
-| wasm run nodejs       | 96.927ms               | packages/utf8mb3-wasm/examples/utf8mb3-js-nodejs-play  |
-| wasm run edge browser | 100.6ms                | packages/utf8mb3-wasm/examples/utf8mb3-js-browser-play |
-| wasi run wasmedge AOT | 35ms                   |                                                        |
-| wasi run warmer       | 60ms                   |                                                        |
-| wasi run wasmtime     | 70ms                   |                                                        |
+| --------------------- | ----------------------- | ------------------------------------------------------ |
+| nodejs native         | 684.573ms               | commemorate/utf8mb3-js/test.js                         |
+| rust native           | 61.85475ms              | packages/utf8mb3/src/lib.rs                            |
+| wasm run nodejs       | 96.927ms                | packages/utf8mb3-wasm/examples/utf8mb3-js-nodejs-play  |
+| wasm run edge browser | 100.6ms                 | packages/utf8mb3-wasm/examples/utf8mb3-js-browser-play |
+| wasi run wasmedge AOT | 35ms                    |                                                        |
+| wasi run warmer       | 60ms                    |                                                        |
+| wasi run wasmtime     | 70ms                    |                                                        |
 
 ## License
 
