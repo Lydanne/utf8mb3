@@ -1,0 +1,17 @@
+[package]
+name = "utf8mb3-wasm"
+version = "0.1.0"
+authors = ["WumaCoder <1829913225@qq.com>"]
+description = "utf8mb3 wasm support"
+license = "MIT"
+repository = "https://github.com/WumaCoder/utf8mb3-wasm"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+utf8mb3 = { version = "0.1.2", path = "../utf8mb3" }
+wasm-bindgen = "0.2"
+
+[profile.release]
+lto = true
