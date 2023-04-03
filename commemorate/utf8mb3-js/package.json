@@ -12,12 +12,16 @@
     "utf8mb4",
     "utf8",
     "encode",
-    "decode"
+    "decode",
+    "wasm"
   ],
   "author": "WumaCoder",
   "repository": {
     "type": "git",
     "url": "https://github.com/WumaCoder/utf8mb3.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "utf8mb3-wasm": "workspace:^0.1.0"
+  }
 }
