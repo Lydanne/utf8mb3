@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "utf8mb3-wasm-play",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,6 +14,6 @@
     "vite-plugin-wasm": "^3.2.2"
   },
   "dependencies": {
-    "utf8mb3": "workspace:^2.0.0"
+    "utf8mb3": "workspace:^2.0.1"
   }
 }

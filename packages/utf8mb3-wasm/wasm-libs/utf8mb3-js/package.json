@@ -1,6 +1,6 @@
 {
   "name": "utf8mb3",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Let mysql's utf8 encoding store four-byte characters such as emoji(让mysql的utf8编码存储表情符号这类的四字节字符).",
   "files": [
     "utf8mb3-wasm_bg.wasm",
